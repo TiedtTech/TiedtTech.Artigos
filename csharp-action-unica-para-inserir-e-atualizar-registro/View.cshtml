@@ -1,0 +1,40 @@
+@model site.Models.Pessoa
+ 
+@{
+    var novoRegistro = true;
+    if (Model != null && Model.PessoaID != 0)
+    {
+        novoRegistro = false;
+    }   
+}
+ 
+@using (Html.BeginForm())
+{
+  if (!novoRegistro)
+  {
+    @Html.HiddenFor(m => m.PessoaID)
+  }
+ 
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+      @Html.LabelFor(m => m.Apelido) @Html.ValidationMessageFor(m => m.Apelido)
+      @Html.TextBoxFor(m => m.Apelido, new { @class = "form-control" })
+    </div>
+  </div>
+ 
+  <div class="row">       
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      @Html.LabelFor(m => m.Nome) @Html.ValidationMessageFor(m => m.Nome)
+      @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+    </div>
+  </div>
+ 
+  if (novoRegistro)
+  {  
+    <!-- Botões de Inserir -->
+  }
+  else
+  {
+    <!-- Botões de Detalhar -->   
+  }
+}
